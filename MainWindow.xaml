@@ -1,0 +1,105 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WPF App" Height="400" Width="600">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="SkyBlue"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="DodgerBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <LinearGradientBrush x:Key="TextBoxGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="LightBlue" Offset="0.0"/>
+            <GradientStop Color="LightGray" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="FontSelector"
+                  Grid.Row="0"
+                  Margin="10"
+                  SelectionChanged="FontSelector_SelectionChanged">
+            <ComboBoxItem Content="Arial" />
+            <ComboBoxItem Content="Courier New" />
+            <ComboBoxItem Content="Times New Roman" />
+            <ComboBoxItem Content="Verdana" />
+            <ComboBoxItem Content="Tahoma" />
+        </ComboBox>
+
+        <ComboBox x:Name="FontSizeSelector"
+                  Grid.Row="0"
+                  Margin="10"
+                  SelectionChanged="FontSizeSelector_SelectionChanged" 
+                  Width="100">
+            <ComboBoxItem Content="10" />
+            <ComboBoxItem Content="12" />
+            <ComboBoxItem Content="14" />
+            <ComboBoxItem Content="16" />
+            <ComboBoxItem Content="18" />
+            <ComboBoxItem Content="20" />
+        </ComboBox>
+
+        <ComboBox x:Name="TextColorSelector"
+                  Grid.Row="0"
+                  Margin="10"
+                  SelectionChanged="TextColorSelector_SelectionChanged" 
+                  Width="100">
+            <ComboBoxItem Content="Black" />
+            <ComboBoxItem Content="Red" />
+            <ComboBoxItem Content="Blue" />
+            <ComboBoxItem Content="Green" />
+            <ComboBoxItem Content="Purple" />
+        </ComboBox>
+
+        <StackPanel Grid.Row="1" Margin="10">
+            <TextBox x:Name="TextBox1" 
+                     Height="100" 
+                     Margin="0,0,0,10"
+                     TextChanged="TextBox_TextChanged"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     Background="{StaticResource TextBoxGradient}"/>
+
+            <TextBox x:Name="TextBox2" 
+                     Height="100" 
+                     Margin="0,0,0,10"
+                     TextChanged="TextBox_TextChanged"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     Background="{StaticResource TextBoxGradient}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="OpenButton" Content="Открыть" 
+                    Margin="10" 
+                    Style="{StaticResource ButtonStyle}" 
+                    Click="OpenButton_Click"/>
+            <Button x:Name="ClearButton" Content="Очистить" 
+                    Margin="10" 
+                    Style="{StaticResource ButtonStyle}" 
+                    Click="ClearButton_Click"/>
+            <Button x:Name="CloseButton" Content="Закрыть" 
+                    Margin="10" 
+                    Style="{StaticResource ButtonStyle}" 
+                    IsEnabled="False" 
+                    Click="CloseButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
